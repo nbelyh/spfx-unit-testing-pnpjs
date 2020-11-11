@@ -33,6 +33,7 @@ Fixed some issues with previous solutions (see reference below) and updates the 
 - does not break on AMD "define" in string resources, i.e. on `import * as strings from 'HelloWorldWebPartStrings'`
 (thatnks to babel and transform-amd-to-commonjs)
 - some controls from @pnp/spfx-controls-react are working (checked with Placeholder)
+(thanks to the babel and forced inclusion of some pnp components to transformIgnorePatterns in jest config)
 
 ### Updated versions
 
