@@ -10,3 +10,8 @@ test('should render Sample component correctly', () => {
   const wrapper = mount(<HelloWorld description="Some Description" />);
   expect(wrapper.find('#welcome').text()).toBe('Welcome to SharePoint!');
 });
+
+test('should have configure button', () => {
+  const wrapper = mount(<HelloWorld description="Some Description" />);
+  expect(wrapper.find('button .ms-Button-label').text()).toBe('Configure');
+});

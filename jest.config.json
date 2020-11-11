@@ -13,11 +13,14 @@
     "js",
     "json"
   ],
+  "setupFiles": [
+    "<rootDir>/jest.setup.js"
+  ],
   "moduleDirectories": [
     "node_modules"
   ],
   "transformIgnorePatterns": [
-    "node_modules/(?!(@pnp)/)"
+    "node_modules/(?!(@pnp|@uifabric|office-ui-fabric-react|@microsoft/sp-core-library|@microsoft/sp-http|@microsoft/sp-diagnostics|@microsoft/decorators|@microsoft/sp-page-context|@microsoft/sp-dynamic-data)/)"
   ],
   "moduleNameMapper": {
     "HelloWorldWebPartStrings": "<rootDir>/src/webparts/helloWorld/loc/en-us.js",
