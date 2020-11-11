@@ -2,72 +2,58 @@
 
 ## Summary
 
-Short summary on functionality and used technologies.
-
-[picture of the solution in action, if possible]
+SPFx sample setup for unit tests with jest
 
 ## Used SharePoint Framework Version
 
 ![version](https://img.shields.io/badge/version-1.11-green.svg)
 
-## Applies to
-
-- [SharePoint Framework](https://aka.ms/spfx)
-- [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
-
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
-
-## Prerequisites
-
-> Any special pre-requisites?
-
-## Solution
-
-Solution|Author(s)
---------|---------
-folder name | Author details (name, company, twitter alias with link)
-
-## Version history
-
-Version|Date|Comments
--------|----|--------
-1.1|March 10, 2021|Update comment
-1.0|January 29, 2021|Initial release
-
 ## Disclaimer
 
-**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 
 ---
 
-## Minimal Path to Awesome
+## Installation
 
 - Clone this repository
 - Ensure that you are at the solution folder
 - in the command-line run:
   - **npm install**
-  - **gulp serve**
-
-> Include any additional steps as needed.
+  - **npm test**
 
 ## Features
 
-Description of the extension that expands upon high-level summary above.
+Fixed some issues with previous solutions (see reference below) and updates the versions. The solution uses babel with plugins to overcome issues with `import`, `export`, and `define` that are coming from some @pnp libraries.
 
-This extension illustrates the following concepts:
+### What is fixed here
 
-- topic 1
-- topic 2
-- topic 3
+- does not blow up on PNPJS: `import { sp } from @pnp/sp`
+(thatnks to babel and transform-es2015-modules-commonjs)
+- does not break on AMD "define" in string resources, i.e. on `import * as strings from 'HelloWorldWebPartStrings'`
+(thatnks to babel and transform-amd-to-commonjs)
+- some controls from @pnp/spfx-controls-react are working (checked with Placeholder)
 
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
+### Updated versions
 
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
+- SPFx 1.11.0 (latest at the moment of writing),
+- React 16.8
+- Typescript 3.9
+- can test both services and components (jest 26 + enzyme)
+
+To run the unit test:
+```
+npm install
+npm test
+```
+The modifications to the original projects are mostly in the latest commit:
+https://github.com/nbelyh/spfx-unit-testing-pnpjs/commit/b32e2e2a894f5433dbd0030c236b8f23edfd86ef
+
+Had to add somehow window.DEBUG = true, looks like there is some issue with PnPTelemetry that is looking for "DEBUG" instead of window.DEBUG, so had to add that as jest startup
 
 ## References
 
-- [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
-- [Building for Microsoft teams](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/build-for-teams-overview)
-- [Use Microsoft Graph in your solution](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/using-microsoft-graph-apis)
-- [Publish SharePoint Framework applications to the Marketplace](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/publish-to-marketplace-overview)
-- [Microsoft 365 Patterns and Practices](https://aka.ms/m365pnp) - Guidance, tooling, samples and open-source controls for your Microsoft 365 development
+- https://github.com/pnp/pnpjs/issues/1425
+- https://blog.velingeorgiev.com/unit-test-your-sharepoint-framework-solution-with-jest
+- https://www.c-sharpcorner.com/article/spfx-unit-test-with-jest-and-enzyme/
+- https://www.eliostruyf.com/sharepoint-framework-unit-tests-with-jest/
