@@ -1,0 +1,28 @@
+{
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.js$": "babel-jest"
+  },
+  "testMatch": [
+    "**/src/**/*.(spec|test).+(ts|js)?(x)",
+    "**/__tests__/**/*.(spec|test).+(ts|js)?(x)"
+  ],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "json"
+  ],
+  "moduleDirectories": [
+    "node_modules"
+  ],
+  "transformIgnorePatterns": [
+    "node_modules/(?!(@pnp)/)"
+  ],
+  "moduleNameMapper": {
+    "HelloWorldWebPartStrings": "<rootDir>/src/webparts/helloWorld/loc/en-us.js",
+    "ControlStrings": "<rootDir>/node_modules/@pnp/spfx-controls-react/lib/loc/en-us.js",
+    "\\.(css|scss)$": "identity-obj-proxy",
+    "^resx-strings/en-us.json": "<rootDir>/node_modules/@microsoft/sp-core-library/lib/resx-strings/en-us.json"
+   }
+}
